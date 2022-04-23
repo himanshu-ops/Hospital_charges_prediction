@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+
+<style>
+    .navbar-text h1 {
+        color: rgb(255, 255, 255);
+        font-size: 40px;
+        align-content: center;
+    }
+    
+    .navbar-text h4 {
+        color: rgb(255, 255, 255);
+        margin: auto;
+        align-content: right;
+    }
+
+    body {
+        background-color: rgb(0, 0, 0);
+    }
+    
+    form {
+        margin-top: 50px;
+        margin: auto;
+        width: 90%;
+    }
+    h3 {
+        text-align: center;
+        }
+
+    .result {
+        margin: auto;
+        width: 100%;
+        border: 1px solid rgb(255, 255, 255);
+        background-color: rgb(108, 216, 140);
+        color: rgb(0, 0, 0);
+        padding: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 1s;
+        ;
+    }
+</style>
+
+<head>
+    <title>Hospital charges predictor</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='img.jpg') }}" width= "100" height="90" class="d-inline-block align-top" alt="">
+            <span class="navbar-text">
+                <h1>Hospital charges prediction application</h1>
+                <h4>DAB304 Healthcare Analytics Project - Group 10 (Self Enroll)</h4>
+            </span>
+        </a>
+    </nav>
+    <div class="result" align="center">
+        {% if result %} {% for variable, value in original_input.items() %}
+        <b>{{ variable }}</b> : {{ value }} {% endfor %}
+        <br>
+        <br>
+        <h2>Predicted total charges:</h2>
+        <p style="font-size:40px">${{ result }}</p>
+        {% endif %}
+    </div>  
+    <br>
+    <form action="{{ url_for('main') }}" method="POST">
+        <div  class="form-group">   
+            <h3>Input Variables</h3>
+            <div align="center">
+                <div style="display: inline-block">
+                    <br>Hospital County:<br>
+                    <input list="1" name="hospitalcounty" type="text" class="form-control" required>
+                    <datalist id="1">
+                      <option value="Allegany">
+                      <option value="Cattaraugus">
+                      <option value="Chautauqua">
+                      <option value="Erie">
+                      <option value="Niagara">
+                    </datalist>
+                    <br>
+                </div>
+                <div style="display: inline-block">
+                    <br>Age group:<br>
+                    <input list="2" name="agegroup" type="text" class="form-control" required>
+                    <datalist id="2">
+                      <option value="0 to 17">
+                      <option value="18 to 29">
+                      <option value="30 to 49">
+                      <option value="50 to 69">
+                      <option value="70 or Older">
+                    </datalist>
+                    <br>
+                </div>
+                <div style="display: inline-block">
+                    <br>Gender:<br>
+                    <input list="3" name="gender" type="text" class="form-control" required>
+                    <datalist id="3">
+                      <option value="M">
+                      <option value="F">
+                      <option value="U">
+                    </datalist>
+                    <br>
+                </div>
+                <div style="display: inline-block">
+                    <br>Length of stay:(in hours)<br>
+                    <input name="lengthofstay" type="number" placeholder="Enter between 0 to 120" class="form-control" required>
+                    <br>
+                </div>
+                <div style="display: inline-block">
+                    <br>Type of Admission:<br>
+                    <input list="5" name="admissiontype" type="text" class="form-control" required>
+                    <datalist id="5">
+                      <option value="Elective">
+                      <option value="Emergency">
+                      <option value="Newborn">
+                      <option value="Trauma">
+                      <option value="Urgent">
+                      <option value="Not Available">
+                    </datalist>
+                    <br>
+                </div>
+                <div style="display: inline-block">
+                    <br>Payment Method:<br>
+                    <input list="6" name="paymentmethod" type="text" class="form-control" required>
+                    <datalist id="6">
+                      <option value="Medicare">
+                      <option value="Medicaid">
+                      <option value="Private Health Insurance">
+                      <option value="Blue Cross/Blue Shield">
+                      <option value="Self-Pay">
+                      <option value="Miscellaneous/Other">
+                      <option value="Federal/State/Local/VA">
+                    </datalist>
+                    <br>
+                </div>
+                <div style="display: inline-block">
+                    <br>Total estimated costs of hospital:<br>
+                    <input name="totalcosts" type="number" placeholder="Enter between 0 to 30000" class="form-control" required>
+                    <br>
+                    </div>  
+                
+                <br>
+                <div style="display: inline-block; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+                    <input type="submit" value="Submit" class="btn btn-primary" >
+                </div>
+            </div>
+
+        </div>   
+
+    </form>
+
+    <br>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

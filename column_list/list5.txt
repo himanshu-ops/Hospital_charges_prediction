@@ -1,0 +1,10 @@
+Medicare
+Medicaid
+Private Health Insurance
+Blue Cross/Blue Shield
+Self-Pay
+Miscellaneous/Other
+Federal/State/Local/VA
+Department of Corrections
+Managed Care, Unspecified
+Unknown

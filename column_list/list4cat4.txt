@@ -1,0 +1,6 @@
+Urgent
+Elective
+Emergency
+Newborn
+Not Available
+Trauma
